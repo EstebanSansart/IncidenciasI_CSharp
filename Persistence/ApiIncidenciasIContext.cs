@@ -15,7 +15,7 @@ public class ApiIncidenciasIContext : DbContext
     public DbSet<DocType> DocTypes { get; set; }
     public DbSet<Incidence> Incidences { get; set; }
     public DbSet<IncidenceDetail> IncidenceDetails { get; set; }
-    public DbSet<IncidenceLevel> IncidentLevels { get; set; }
+    public DbSet<IncidenceLevel> IncidenceLevels { get; set; }
     public DbSet<IncidenceType> IncidenceTypes { get; set; }
     public DbSet<Place> Places { get; set; }
     public DbSet<Role> Roles { get; set; }
