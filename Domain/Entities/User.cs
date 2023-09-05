@@ -8,4 +8,5 @@ public class User : BaseEntity
     public DocType DocType { get; set; }
     public int IdRoleFk { get; set; }
     public Role Role { get; set; }
+    public object Contacts { get; set; }
 }

@@ -1,5 +1,5 @@
 namespace Domain.Entities;
-public class UserArea
+public class UserArea : BaseEntity
 {
     public int IdUserFk { get; set; }
     public User User { get; set; }
