@@ -1,5 +1,5 @@
 namespace Domain.Entities;
-public class Incidence
+public class Incidence : BaseEntity
 {
     public string Description { get; set; }
     public DateTime Date { get; set; }
@@ -11,4 +11,5 @@ public class Incidence
     public Area Area { get; set; }
     public int IdPlaceFk { get; set; }
     public Place Place { get; set; }
+    public ICollection<IncidenceDetail> IncidenceDetails { get; set; }
 }

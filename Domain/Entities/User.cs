@@ -8,5 +8,7 @@ public class User : BaseEntity
     public DocType DocType { get; set; }
     public int IdRoleFk { get; set; }
     public Role Role { get; set; }
-    public object Contacts { get; set; }
+    public ICollection<Incidence> Incidences { get; set; }
+    public ICollection<Contact> Contacts { get; set; }
+    public ICollection<UserArea> UserAreas { get; set; }
 }
