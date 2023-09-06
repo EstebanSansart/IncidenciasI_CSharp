@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiIncidenciasI.Controllers;
-public class CategoryTypeController : BaseApiController
+public class IncidenceLevelController : BaseApiController
 {
     private readonly IUnitOfWork _unitOfWork;
 
-    public CategoryTypeController(IUnitOfWork unitOfWork)
+    public IncidenceLevelController(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
@@ -17,57 +17,57 @@ public class CategoryTypeController : BaseApiController
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerable<ContactType>>> Get()
+    public async Task<ActionResult<IEnumerable<IncidenceLevel>>> Get()
     {
-        var contact_types = await _unitOfWork.ContactTypes.GetAllAsync();
-        return Ok(contact_types);
+        var incidence_levels = await _unitOfWork.IncidenceLevels.GetAllAsync();
+        return Ok(incidence_levels);
     }
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Get(int id)
     {
-        var contact_type = await _unitOfWork.ContactTypes.GetByIdAsync(id);
-        return Ok(contact_type);
+        var incidence_level = await _unitOfWork.IncidenceLevels.GetByIdAsync(id);
+        return Ok(incidence_level);
     }
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ContactType>> Post(ContactType contact_typePO){
-        this._unitOfWork.ContactTypes.Add(contact_typePO);
+    public async Task<ActionResult<IncidenceLevel>> Post(IncidenceLevel incidence_levelPO){
+        this._unitOfWork.IncidenceLevels.Add(incidence_levelPO);
         await _unitOfWork.SaveAsync();
-        if (contact_typePO == null)
+        if (incidence_levelPO == null)
         {
             return BadRequest();
         }
-        return CreatedAtAction(nameof(Post),new {id = contact_typePO.Id}, contact_typePO);
+        return CreatedAtAction(nameof(Post),new {id = incidence_levelPO.Id}, incidence_levelPO);
     }
 
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ContactType>> Put(int id, [FromBody]ContactType contact_typePU){
-        if(contact_typePU == null)
+    public async Task<ActionResult<IncidenceLevel>> Put(int id, [FromBody]IncidenceLevel incidence_levelPU){
+        if(incidence_levelPU == null)
         {
             return NotFound();
         }
-        _unitOfWork.ContactTypes.Update(contact_typePU);
+        _unitOfWork.IncidenceLevels.Update(incidence_levelPU);
         await _unitOfWork.SaveAsync();
-        return contact_typePU;
+        return incidence_levelPU;
     }
 
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(int id){
-        var contact_typeD = await _unitOfWork.ContactTypes.GetByIdAsync(id);
-        if(contact_typeD == null)
+        var incidence_levelD = await _unitOfWork.IncidenceLevels.GetByIdAsync(id);
+        if(incidence_levelD == null)
         {
             return NotFound();
         }
-        _unitOfWork.ContactTypes.Remove(contact_typeD);
+        _unitOfWork.IncidenceLevels.Remove(incidence_levelD);
         await _unitOfWork.SaveAsync();
         return NoContent();
     }

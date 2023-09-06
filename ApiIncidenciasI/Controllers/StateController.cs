@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiIncidenciasI.Controllers;
-public class CategoryTypeController : BaseApiController
+public class StateController : BaseApiController
 {
     private readonly IUnitOfWork _unitOfWork;
 
-    public CategoryTypeController(IUnitOfWork unitOfWork)
+    public StateController(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
@@ -17,57 +17,57 @@ public class CategoryTypeController : BaseApiController
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerable<ContactType>>> Get()
+    public async Task<ActionResult<IEnumerable<State>>> Get()
     {
-        var contact_types = await _unitOfWork.ContactTypes.GetAllAsync();
-        return Ok(contact_types);
+        var states = await _unitOfWork.States.GetAllAsync();
+        return Ok(states);
     }
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Get(int id)
     {
-        var contact_type = await _unitOfWork.ContactTypes.GetByIdAsync(id);
-        return Ok(contact_type);
+        var state = await _unitOfWork.States.GetByIdAsync(id);
+        return Ok(state);
     }
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ContactType>> Post(ContactType contact_typePO){
-        this._unitOfWork.ContactTypes.Add(contact_typePO);
+    public async Task<ActionResult<State>> Post(State statePO){
+        this._unitOfWork.States.Add(statePO);
         await _unitOfWork.SaveAsync();
-        if (contact_typePO == null)
+        if (statePO == null)
         {
             return BadRequest();
         }
-        return CreatedAtAction(nameof(Post),new {id = contact_typePO.Id}, contact_typePO);
+        return CreatedAtAction(nameof(Post),new {id = statePO.Id}, statePO);
     }
 
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ContactType>> Put(int id, [FromBody]ContactType contact_typePU){
-        if(contact_typePU == null)
+    public async Task<ActionResult<State>> Put(int id, [FromBody]State statePU){
+        if(statePU == null)
         {
             return NotFound();
         }
-        _unitOfWork.ContactTypes.Update(contact_typePU);
+        _unitOfWork.States.Update(statePU);
         await _unitOfWork.SaveAsync();
-        return contact_typePU;
+        return statePU;
     }
 
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(int id){
-        var contact_typeD = await _unitOfWork.ContactTypes.GetByIdAsync(id);
-        if(contact_typeD == null)
+        var stateD = await _unitOfWork.States.GetByIdAsync(id);
+        if(stateD == null)
         {
             return NotFound();
         }
-        _unitOfWork.ContactTypes.Remove(contact_typeD);
+        _unitOfWork.States.Remove(stateD);
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
