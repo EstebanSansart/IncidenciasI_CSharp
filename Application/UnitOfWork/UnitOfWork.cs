@@ -2,7 +2,7 @@ using Application.Repository;
 using Domain.Interfaces;
 using Persistence;
 
-namespace Aplication.UnitOfWork
+namespace Application.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
@@ -193,9 +193,14 @@ namespace Aplication.UnitOfWork
             }
         }
         
-        public int Save(){
-            return context.SaveChanges();
+        public async Task<int> SaveAsync()
+        {
+            return await context.SaveChangesAsync();
         }
+
+        /*public int Save(){
+            return context.SaveChanges();
+        }*/
         public void Dispose()
         {
             context.Dispose();
