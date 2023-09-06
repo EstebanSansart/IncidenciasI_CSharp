@@ -1,3 +1,4 @@
+using System.Reflection;
 using ApiIncidenciasI.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -10,7 +11,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
 builder.Services.ConfigureCors();
+builder.Services.AddApplicationServices();
 
 builder.Services.AddDbContext<ApiIncidenciasIContext>(options =>
 {
