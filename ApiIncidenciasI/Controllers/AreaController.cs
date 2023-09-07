@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiIncidenciasI.Controllers;
+[ApiVersion("1.0")]
+[ApiVersion("1.1")]
 public class AreaController : BaseApiController
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -26,6 +28,7 @@ public class AreaController : BaseApiController
         return Ok(areas);
     }*/
     [HttpGet]
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<IEnumerable<AreaDto>>> Get()
