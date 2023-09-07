@@ -11,4 +11,11 @@ public class DocTypeRepository : GenericRepository<DocType>, IDocTypeRepository
     {
         _context = context;
     }
+    public override async Task<IEnumerable<DocType>> GetAllAsync()
+    {
+        return await _context.DocTypes
+                            .Include(a => a.Contacts)
+                            .Include(a => a.Users)
+                            .ToListAsync();
+    }
 }

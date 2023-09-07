@@ -11,4 +11,9 @@ public class ContactCategoryRepository : GenericRepository<ContactCategory>, ICo
     {
         _context = context;
     }
+    public override async Task<IEnumerable<ContactCategory>> GetAllAsync()
+    {
+        return await _context.ContactCategories
+                            .ToListAsync();
+    }
 }

@@ -20,6 +20,7 @@ public class ApiIncidenciasIContext : DbContext
     public DbSet<Place> Places { get; set; }
     public DbSet<Role> Roles { get; set; }
     public DbSet<State> States { get; set; }
+    public DbSet<UserArea> UserAreas { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<WorkTool> WorkTools { get; set; }
 

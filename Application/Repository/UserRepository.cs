@@ -11,4 +11,12 @@ public class UserRepository : GenericRepository<User>, IUserRepository
     {
         _context = context;
     }
+    public override async Task<IEnumerable<User>> GetAllAsync()
+    {
+        return await _context.Users
+                            .Include(a => a.Incidences)
+                            .Include(a => a.Contacts)
+                            .Include(a => a.UserAreas)
+                            .ToListAsync();
+    }
 }

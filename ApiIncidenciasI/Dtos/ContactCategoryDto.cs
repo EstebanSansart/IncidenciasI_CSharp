@@ -1,5 +1,7 @@
 namespace ApiIncidenciasI.Dtos;
 public class ContactCategoryDto
 {
-    public string Name { get; set; }
+    public int ContactCategoryId { get; set; }
+    public string ContactCategoryName { get; set; }
+    public List<ContactDto> Contacts { get; set; }  
 }

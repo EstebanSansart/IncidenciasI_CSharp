@@ -11,4 +11,10 @@ public class IncidenceLevelRepository : GenericRepository<IncidenceLevel>, IInci
     {
         _context = context;
     }
+    public override async Task<IEnumerable<IncidenceLevel>> GetAllAsync()
+    {
+        return await _context.IncidenceLevels
+                            .Include(a => a.IncidenceDetails)
+                            .ToListAsync();
+    }
 }

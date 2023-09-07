@@ -11,4 +11,9 @@ public class UserAreaRepository : GenericRepository<UserArea>, IUserAreaReposito
     {
         _context = context;
     }
+    public override async Task<IEnumerable<UserArea>> GetAllAsync()
+    {
+        return await _context.UserAreas
+                            .ToListAsync();
+    }
 }

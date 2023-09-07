@@ -11,4 +11,12 @@ public class AreaRepository : GenericRepository<Area>, IAreaRepository
     {
         _context = context;
     }
+    public override async Task<IEnumerable<Area>> GetAllAsync()
+    {
+        return await _context.Areas
+                            .Include(a => a.UserAreas)
+                            .Include(a => a.Places)
+                            .Include(a => a.Incidences)
+                            .ToListAsync();
+    }
 }

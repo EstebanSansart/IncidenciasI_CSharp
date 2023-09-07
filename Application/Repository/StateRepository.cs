@@ -11,4 +11,11 @@ public class StateRepository : GenericRepository<State>, IStateRepository
     {
         _context = context;
     }
+    public override async Task<IEnumerable<State>> GetAllAsync()
+    {
+        return await _context.States
+                            .Include(a => a.Incidences)
+                            .Include(a => a.IncidenceDetails)
+                            .ToListAsync();
+    }
 }

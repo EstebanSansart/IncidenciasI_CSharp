@@ -11,4 +11,10 @@ public class RoleRepository : GenericRepository<Role>, IRoleRepository
     {
         _context = context;
     }
+    public override async Task<IEnumerable<Role>> GetAllAsync()
+    {
+        return await _context.Roles
+                            .Include(a => a.Users)
+                            .ToListAsync();
+    }
 }

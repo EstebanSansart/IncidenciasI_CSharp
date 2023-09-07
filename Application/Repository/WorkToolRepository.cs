@@ -11,4 +11,10 @@ public class WorkToolRepository : GenericRepository<WorkTool>, IWorkToolReposito
     {
         _context = context;
     }
+    public override async Task<IEnumerable<WorkTool>> GetAllAsync()
+    {
+        return await _context.WorkTools
+                            .Include(a => a.IncidenceDetails)
+                            .ToListAsync();
+    }
 }

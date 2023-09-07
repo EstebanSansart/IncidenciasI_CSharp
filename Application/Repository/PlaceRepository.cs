@@ -11,4 +11,10 @@ public class PlaceRepository : GenericRepository<Place>, IPlaceRepository
     {
         _context = context;
     }
+    public override async Task<IEnumerable<Place>> GetAllAsync()
+    {
+        return await _context.Places
+                            .Include(a => a.Incidences)
+                            .ToListAsync();
+    }
 }

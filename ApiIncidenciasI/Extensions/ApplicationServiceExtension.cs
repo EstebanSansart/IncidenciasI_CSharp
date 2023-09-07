@@ -30,7 +30,7 @@ public static class ApplicationServiceExtension
         //services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
-        services.AddScoped<IUserService, UserService>();
+        //services.AddScoped<IUserService, UserService>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 

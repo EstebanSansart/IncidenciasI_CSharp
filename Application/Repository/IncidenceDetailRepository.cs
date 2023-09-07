@@ -11,4 +11,9 @@ public class IncidenceDetailRepository : GenericRepository<IncidenceDetail>, IIn
     {
         _context = context;
     }
+    public override async Task<IEnumerable<IncidenceDetail>> GetAllAsync()
+    {
+        return await _context.IncidenceDetails
+                            .ToListAsync();
+    }
 }

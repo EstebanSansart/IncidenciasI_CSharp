@@ -198,9 +198,10 @@ namespace Application.UnitOfWork
             return await context.SaveChangesAsync();
         }
 
-        /*public int Save(){
+        public int Save(){
             return context.SaveChanges();
-        }*/
+        }
+        
         public void Dispose()
         {
             context.Dispose();

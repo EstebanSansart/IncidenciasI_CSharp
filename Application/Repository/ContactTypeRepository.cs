@@ -11,4 +11,10 @@ public class ContactTypeRepository : GenericRepository<ContactType>, IContactTyp
     {
         _context = context;
     }
+    public override async Task<IEnumerable<ContactType>> GetAllAsync()
+    {
+        return await _context.ContactTypes
+                            .Include(a => a.Contacts)
+                            .ToListAsync();
+    }
 }
